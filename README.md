@@ -50,19 +50,19 @@ This guide provides you steps to deploy a Stable Diffusion WebUI solution in you
 ## FAQ
 ### Does it support multi-users/sessions?
 
-For [Stable-Diffusion-UI-Agones](./Stable-Diffusion-UI-Agones/README.md), it support multi users/sessions in nature since it assign a dedicated pod for each login user.
+For [Stable-Diffusion-UI-Agones](./Stable-Diffusion-UI-Agones/README.md), it supports multi users/sessions in nature since it assigns a dedicated pod for each logged in user.
 For [Stable-Diffusion-UI-GKE](./Stable-Diffusion-UI-GKE/README.md), AUTOMATIC1111's Stable Diffusion WebUI does not support multi users/sessions at this moment, you can refer to https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/7970. To support multi-users, we create one deployment for each model.
 
 ### About file structure on NFS?
-For [Stable-Diffusion-UI-Agones](./Stable-Diffusion-UI-Agones/README.md), in the demo we use [init script](./Stable-Diffusion-UI-Agones/sd-webui/user-watch.py) to initialize folders for each users.
-You can customize the init script to meet your need, and there is a [reference](./examples/sd-webui/user-watch.py).
+For [Stable-Diffusion-UI-Agones](./Stable-Diffusion-UI-Agones/README.md), in the demo we used [init script](./Stable-Diffusion-UI-Agones/sd-webui/user-watch.py) to initialize folders for each user.
+You can customize the init script to meet your needs, and there is a [reference](./examples/sd-webui/user-watch.py).
 
 For [Stable-Diffusion-UI-GKE](./Stable-Diffusion-UI-GKE/README.md), instead of building images for each model, we use one image with shared storage from Filestore and properly orchestrate for our files and folders.
 Please refer to the deployment_*.yaml for reference.
 
-Your folder structure could probably look like this in your Filestore file share, you may have to adjust according to your needs:
+Your folder structure could probably look like this in your Filestore file share, you may have to adjust it according to your needs:
 ```
-/models/Stable-diffusion # <--- This is where Stable Diffusion WebUI looking for models
+/models/Stable-diffusion # <--- This is where Stable Diffusion WebUI Looks for models
 |-- nai
 |   |-- nai.ckpt
 |   |-- nai.vae.pt
@@ -70,7 +70,7 @@ Your folder structure could probably look like this in your Filestore file share
 |-- sd15
 |   `-- v1-5-pruned-emaonly.safetensors
 
-/inputs/ # <--- for training images, only use it when running training job from UI(sd_dreammbooth_extension)
+/inputs/ # <--- for training images, only use it when running training job from UI (sd_dreammbooth_extension)
 |-- alvan-nee-cropped
 |   |-- alvan-nee-9M0tSjb-cpA-unsplash_cropped.jpeg
 |   |-- alvan-nee-Id1DBHv4fbg-unsplash_cropped.jpeg
